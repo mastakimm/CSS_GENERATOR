@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sprite Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="CSS/style.css" rel="stylesheet">
+</head>
+<body style="background: #f0f0f0;display: flex; justify-content: center; align-items: center; height: 100vh">
+
+<div class="container">
+    <div class="col-md-8 offset-md-2">
+        <form action="PHP/index.php" method="post" enctype="multipart/form-data">
+            <div class="text-center mb-4">
+                <h3>CSS & SPRITE GENERATOR</h3>
+            </div>
+            <div class="alert alert-info text-center">
+                <b>CSS sprites enable the consolidation of multiple images into a single file, thereby diminishing the need for numerous HTTP requests and expediting the loading of web pages.</b>
+            </div>
+
+            <div class="mb-4">
+                <h4>Upload Your Images</h4>
+                <input type="file" name="images[]" class="form-control" multiple>
+                <small class="form-text text-muted">20 files max, 12MB total.</small>
+            </div>
+
+            <div class="mb-4">
+                <h4>Choose Options</h4>
+                <div class="form-group mb-3">
+                    <label for="outputCss">Filename of the generated CSS:</label>
+                    <input type="text" name="outputCss" id="outputCss" class="form-control">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="outputSprite">Filename of the generated Sprite:</label>
+                    <input type="text" name="outputSprite" id="outputSprite" class="form-control">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="padding">Padding between images:</label>
+                    <select name="padding" id="padding" class="form-select">
+                        <option value="0" selected>0px</option>
+                        <option value="1">1px</option>
+                        <option value="2">2px</option>
+                        <option value="3">3px</option>
+                        <option value="4">4px</option>
+                        <option value="5">5px</option>
+                        <option value="10">10px</option>
+                        <option value="20">20px</option>
+                        <option value="30">30px</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Create your sprite</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
