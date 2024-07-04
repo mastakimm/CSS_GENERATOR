@@ -23,19 +23,14 @@ bash
 cd CSS_GENERATOR
 
 ### Usage
-Place your PNG images in the specified directory.
-Run the command-line tool to generate the sprite sheet and CSS:
+
+This will open the interface:
+php -S localhost:4444
+
+### Or with CLI:
 bash
-php css_generator.php /path/to/images /path/to/output
+cd php
 
 ### Example
 bash
-php css_generator.php images/ output/
-
-Feel free to explore the existing CSS sprite sheet generators online for inspiration on additional features and functionalities.
-
-
-
-
-
-
+php cli.php -r -i output_sprite.png -s style.css -p 10 /path/to/your/images
