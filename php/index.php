@@ -2,6 +2,7 @@
 require 'css_generator.php';
 
 $outputSpriteName = $_POST["outputSprite"];
+echo($_POST["outputSprite"]);
 $generatedCssFilename = $_POST["outputCss"];
 $padding = $_POST["padding"];
 
@@ -16,6 +17,7 @@ $totalWidth = 0;
 $maxHeight = 0;
 $image = [];
 $posX = 0;
+$count = 0;
 
 foreach ($inputFiles['tmp_name'] as $index => $tmpName) {
     $size = getimagesize($tmpName);
@@ -38,6 +40,8 @@ foreach ($inputFiles['tmp_name'] as $index => $tmpName) {
     $totalWidth += $size[0];
     $maxHeight = max($maxHeight, $size[1]);
     $posX += $size[0] + $padding;
+
+    $count++;
 }
 
 $outputSprite = createSprite($totalWidth, $maxHeight);

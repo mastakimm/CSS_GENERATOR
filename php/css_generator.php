@@ -37,24 +37,22 @@ function myScandir($dir, $listDirectories = false, $skipDots = true)
     return $pathsImg;
 }
 
-function generateCss($image)
+
+function generateCss($images, $outputSpriteFilename, $padding)
 {
-    global $outputSpriteFilename, $i, $padding;
-
     $content = ".sprite {\n" .
-    "\tbackground-image: url('$outputSpriteFilename');\n" .
-    "\tbackground-repeat: no-repeat;\n" .
-    "\tdisplay : block;\n" .
-    "}\n\n";
+        "\tbackground-image: url('$outputSpriteFilename');\n" .
+        "\tbackground-repeat: no-repeat;\n" .
+        "\tdisplay: block;\n" .
+        "}\n\n";
 
-    foreach ($image as $value) {
-        if ($i != 0) {
-            $position = "-" . $value['position'] + $padding . "px";
-        }
-        $content .= "." . $value["name"] . " {\n" .
-        "\tbackground-position: " . $position .  " 0px;\n" .
-        "\twidth: " . $value["width"] . "px;\n" .
-        "\theight: " . $value['height'] . "px;\n" . "}" . "\n\n";
+    foreach ($images as $index => $image) {
+        $position = "-" . ($image['position']) . "px";
+
+        $content .= "." . $image["name"] . " {\n" .
+            "\tbackground-position: " . $position .  " 0px;\n" .
+            "\twidth: " . $image["width"] . "px;\n" .
+            "\theight: " . $image['height'] . "px;\n" . "}\n\n";
     }
 
     return $content;
