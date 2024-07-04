@@ -15,7 +15,7 @@ Basic understanding of UNIX command-line operations.
 ## Installation
 ### Clone the repository:
 bash
-With HTTPS: git clone https://github.com/mastakimm/CSS_GENERATOR.git
+With HTTPS: git clone https://github.com/mastakimm/CSS_GENERATOR.git<br>
 With SSH: git clone git@github.com:mastakimm/CSS_GENERATOR.git
 
 ### Navigate to the project directory:
