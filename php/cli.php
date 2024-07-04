@@ -1,11 +1,25 @@
 <?php
 
 require 'css_generator.php';
-$input = $_POST["files"];
-var_dump($input);
-$recursive = true;
-$padding = $_POST["padding"];
-var_dump($padding);
+if (end($argv) === ".") {
+    $input = "../" . basename(getcwd());
+    var_dump($input);
+} else {
+    $input = end($argv);
+}
+$outputSpriteFilename = "";
+$generatedCssFilename = "";
+$recursive = false;
+$padding = 0;
+
+$options = getopt("ri:s:p:", ["recursive", "output-image:", "output-style:", "padding:"]);
+
+
+$recursive = isset($options['r']) || isset($options['recursive']);
+$outputSpriteFilename = $options['i'] ?? $options['output-image'] ?? "sprite.png";
+$generatedCssFilename = $options['s'] ?? $options['output-style'] ?? "style.css";
+$padding = intval($options['p'] ?? $options['padding'] ?? 0);
+
 
 if (is_dir($input)) {
     $pathsImg = addImgInDirectory($input, $recursive);
@@ -37,7 +51,7 @@ if (is_dir($input)) {
     }
 
     $outputSprite = createSprite($totalWidth, $maxHeight);
-    $content = generateCss($image);
+    $content = generateCss($image, $outputSpriteFilename, $padding);
     $handle = fopen($generatedCssFilename, "w");
     fwrite($handle, $content);
 
@@ -52,15 +66,15 @@ if (is_dir($input)) {
         }
 
 
-        imagecopy($outputSprite, $tmp, $posX,0, 0, 0, $img['width'], $img['height']);
+        imagecopy($outputSprite, $tmp, $posX, 0, 0, 0, $img['width'], $img['height']);
         $posX += $img['width'];
         $posX += $padding;
         imagedestroy($tmp);
     }
     imagepng($outputSprite, $outputSpriteFilename);
-
 } else {
     echo "Error : $input isn't a directory.\n";
 }
 
-echo "\nSprite created with success in $outputSpriteFilename.\nStylesheet created with succes in $generatedCssFilename.\n";
+echo "\nSprite created with success in $outputSpriteFilename.
+\nStylesheet created with succes in $generatedCssFilename.\n";
